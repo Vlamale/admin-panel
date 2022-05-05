@@ -1,0 +1,139 @@
+{
+  "name": "aristek-template-v1",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "run-p gql:start app:start",
+    "build": "run-s gql:setup app:build",
+    "setup": "run-s gql:cleanup gql:setup",
+    "app:start": "craco start",
+    "app:build": "craco build",
+    "verify": "run-s gql:setup verify:all",
+    "verify:all": "run-p verify:typescript verify:eslint verify:stylelint verify:prettier",
+    "verify:typescript": "tsc --noEmit",
+    "verify:eslint": "eslint --max-warnings 0 --cache \"src/**/*.{ts,tsx,gql}\"",
+    "verify:stylelint": "stylelint --max-warnings 0 --cache \"src/**/*.css\"",
+    "verify:prettier": "prettier --check \"src/**/*.{ts,tsx,css,gql}\"",
+    "gql:setup": "run-s gql:schema gql:typings",
+    "gql:start": "nodemon --watch \"src/**/*\" -e gql --exec \"yarn gql:typings\"",
+    "gql:schema": "get-graphql-schema https://graphqlzero.almansi.me/api > schema.gql",
+    "gql:typings": "graphql-codegen",
+    "gql:cleanup": "rimraf \"src/**/*.generated.ts\""
+  },
+  "dependencies": {
+    "@apollo/client": "3.5.5",
+    "@chakra-ui/react": "^1.7.4",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "@hookform/resolvers": "2.8.8",
+    "dayjs": "1.10.7",
+    "framer-motion": "5",
+    "graphql": "15.6.1",
+    "lodash": "4.17.21",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "7.24.1",
+    "react-icons": "4.3.1",
+    "react-router-dom": "6.0.1",
+    "yarn-run-all": "^3.1.1",
+    "yup": "0.32.11"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "7.16.3",
+    "@commitlint/cli": "13.2.1",
+    "@commitlint/config-conventional": "13.2.0",
+    "@craco/craco": "6.3.0",
+    "@graphql-codegen/add": "1.17.1",
+    "@graphql-codegen/cli": "1.17.1",
+    "@graphql-codegen/near-operation-file-preset": "1.17.1",
+    "@graphql-codegen/typescript": "1.17.1",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.17.1",
+    "@graphql-codegen/typescript-operations": "1.17.1",
+    "@graphql-eslint/eslint-plugin": "2.4.1",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.3.1",
+    "@types/yup": "0.29.13",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "craco-graphql-loader": "1.0.1",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-aristek": "6.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-css-modules": "2.11.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-only-warn": "1.0.3",
+    "eslint-plugin-react": "7.26.1",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "get-graphql-schema": "2.1.2",
+    "husky": "4.2.5",
+    "lint-staged": "11.2.3",
+    "nodemon": "2.0.13",
+    "npm-run-all": "4.1.5",
+    "postcss-nested": "4.2.1",
+    "prettier": "2.4.1",
+    "react-scripts": "4.0.3",
+    "rimraf": "3.0.2",
+    "stylelint": "13.13.1",
+    "stylelint-config-css-modules": "2.2.0",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-standard": "22.0.0",
+    "typescript": "4.4.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,gql}": [
+      "eslint --max-warnings 0",
+      "prettier --write"
+    ],
+    "src/**/*.css": [
+      "stylelint --max-warnings 0",
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "aristek",
+      "aristek/typescript",
+      "aristek/graphql",
+      "aristek/css-modules",
+      "aristek/prettier"
+    ],
+    "plugins": [
+      "only-warn"
+    ]
+  },
+  "stylelint": {
+    "defaultSeverity": "warning",
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-css-modules",
+      "stylelint-config-prettier"
+    ],
+    "rules": {
+      "no-descending-specificity": null
+    }
+  },
+  "commitlint": {
+    "extends": "@commitlint/config-conventional"
+  }
+}

@@ -1,0 +1,34 @@
+# Path to root schema.
+schema: schema.gql
+# Specify where all queries and mutations are located.
+documents: src/**/*.gql
+generates:
+  # Generate root TypeScript interfaces based on `schema.gql`.
+  src/schema.generated.ts:
+    plugins:
+      - typescript
+      - add:
+          content: "/* eslint-disable */"
+    config:
+      skipTypename: true
+  # Tell TypeScript what is exported from `operations.gql` files.
+  src/env.generated.d.ts:
+    plugins:
+      - typescript-graphql-files-modules
+      - add:
+          content: "/* eslint-disable */"
+  # Generate TypeScript interfaces for every query and mutation.
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: schema.generated.ts
+    plugins:
+      - typescript-operations
+      - add:
+          content: "/* eslint-disable */"
+    config:
+      skipTypename: true
+# Prettify generated files.
+hooks:
+  afterAllFileWrite:
+    - prettier --write
