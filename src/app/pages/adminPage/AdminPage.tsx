@@ -1,18 +1,8 @@
 import * as React from "react";
-import { Box, Heading } from "@chakra-ui/react";
-import Header from "app/components/header";
+import { Box } from "@chakra-ui/react";
 
 const AdminPage: React.FC = () => {
-  return (
-    <Box>
-      <Header />
-      <Box minH="100%" mt={7}>
-        <Heading as="h1" textAlign="center">
-          Dashboard
-        </Heading>
-      </Box>
-    </Box>
-  );
+  return <Box mt={7} />;
 };
 
 export default AdminPage;

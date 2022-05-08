@@ -1,7 +1,16 @@
 import * as React from "react";
 import { Button, Flex, Heading, Link, Stack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "app/hooks";
 
 const Header: React.FC = () => {
+  const { signOut } = useAppContext();
+  const navigate = useNavigate();
+
+  const signOutHandler = () => {
+    signOut(() => navigate("login"));
+  };
+
   return (
     <Flex
       direction="row"
@@ -41,7 +50,12 @@ const Header: React.FC = () => {
           </Link>
         </Stack>
       </Flex>
-      <Button colorScheme="teal" variant="outline" mx="10">
+      <Button
+        colorScheme="teal"
+        variant="outline"
+        mx="10"
+        onClick={signOutHandler}
+      >
         Log out
       </Button>
     </Flex>
