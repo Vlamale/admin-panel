@@ -1,8 +1,9 @@
 import React from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Center, ChakraProvider, Spinner } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
 import { AuthRoute, PublicRoute } from "./hoc";
+import { useAppContext } from "./hooks";
 import { authRoutes, publicRoutes } from "./routes";
 
 const client = new ApolloClient({
@@ -11,6 +12,8 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const { isLoading } = useAppContext();
+
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
@@ -27,6 +30,18 @@ function App() {
             ))}
           </Route>
         </Routes>
+
+        {isLoading && (
+          <Center pos="absolute" top="0" w="100vw" h="100vh">
+            <Spinner
+              thickness="1px"
+              speed="0.6s"
+              emptyColor="gray.200"
+              color="teal.500"
+              size="xl"
+            />
+          </Center>
+        )}
       </ChakraProvider>
     </ApolloProvider>
   );

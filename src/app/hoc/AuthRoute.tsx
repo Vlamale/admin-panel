@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box } from "@chakra-ui/react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import Header from "app/components/header";
+import { Header } from "app/components";
 import { useAppContext } from "app/hooks";
 
 const PublicPage: React.FC = () => {

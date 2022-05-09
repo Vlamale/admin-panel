@@ -1,35 +1,34 @@
 import * as React from "react";
 import { Box, Button, Heading } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { SubmitHandler, useForm } from "react-hook-form";
-import * as yup from "yup";
+import {
+  DeepMap,
+  DeepPartial,
+  FieldError,
+  UseFormRegister,
+} from "react-hook-form";
 import FormField, { IFieldProps } from "./FormField";
 
 export interface IFormProps<TFormFields> {
   title: string;
-  formFieldsProps: IFieldProps<TFormFields>[];
   submitBtn: string;
-  formSchema: yup.AnyObjectSchema;
-  onSubmit: SubmitHandler<TFormFields>;
+  formFieldsProps: IFieldProps<TFormFields>[];
+  errors: DeepMap<DeepPartial<TFormFields>, FieldError>;
+  loading: boolean;
+  register: UseFormRegister<TFormFields>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 }
 
 const Form = <TFormFields,>({
   title,
-  formFieldsProps,
   submitBtn,
+  formFieldsProps,
+  errors,
+  loading,
   onSubmit,
-  formSchema,
+  register,
 }: IFormProps<TFormFields>): JSX.Element => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TFormFields>({
-    resolver: yupResolver(formSchema),
-  });
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Box textAlign="center" mb="7">
         <Heading fontSize="3xl" fontWeight="normal">
           {title}
@@ -51,6 +50,7 @@ const Form = <TFormFields,>({
         width="full"
         mt={4}
         type="submit"
+        disabled={loading}
       >
         {submitBtn}
       </Button>

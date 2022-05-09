@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AppContext, { AuthCallback } from "./AppContext";
 
 const AppProvider: React.FC = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(
     !!localStorage.getItem("fake-token")
   );
@@ -19,7 +20,9 @@ const AppProvider: React.FC = ({ children }) => {
   };
 
   const value = {
+    isLoading,
     isAuthorized,
+    setIsLoading,
     signIn,
     signOut,
   };
