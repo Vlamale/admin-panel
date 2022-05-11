@@ -25,12 +25,12 @@ const Header: React.FC = () => {
         </Heading>
         <Stack size="sm" direction={["column", "row"]} spacing="24px">
           <Link
-            href="/"
+            href="/albums"
             _hover={{
               color: "teal.500",
             }}
           >
-            Menu Item 1
+            albums
           </Link>
           <Link
             href="/"

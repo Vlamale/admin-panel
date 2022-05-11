@@ -1,4 +1,5 @@
 import { AdminPage, LoginPage } from "./pages";
+import { AlbumListPage } from "./pages/albumListPage";
 
 interface IRoute {
   path: string;
@@ -16,6 +17,10 @@ const authRoutes: IRoute[] = [
   {
     path: "/",
     Component: AdminPage,
+  },
+  {
+    path: "/albums",
+    Component: AlbumListPage,
   },
 ];
 
