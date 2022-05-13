@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AppContext from "./appContext";
+import AppContext from "./duck/appContext";
 
 const AppProvider: React.FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
