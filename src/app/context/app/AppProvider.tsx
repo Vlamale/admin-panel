@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AppContext, { AuthCallback } from "./AppContext";
+import AppContext from "./AppContext";
 
 const AppProvider: React.FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -7,16 +7,14 @@ const AppProvider: React.FC = ({ children }) => {
     !!localStorage.getItem("fake-token")
   );
 
-  const signIn = (token: string, cb: AuthCallback): void => {
+  const signIn = (token: string): void => {
     localStorage.setItem("fake-token", token);
     setIsAuthorized(true);
-    cb();
   };
 
-  const signOut = (cb: AuthCallback) => {
+  const signOut = () => {
     localStorage.removeItem("fake-token");
     setIsAuthorized(false);
-    cb();
   };
 
   const value = {

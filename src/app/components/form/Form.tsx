@@ -1,61 +1,29 @@
 import * as React from "react";
-import { Box, Button, Heading } from "@chakra-ui/react";
-import {
-  DeepMap,
-  DeepPartial,
-  FieldError,
-  UseFormRegister,
-} from "react-hook-form";
-import FormField, { IFieldProps } from "./FormField";
+import { FormProvider } from "react-hook-form";
+import useForm from "app/hooks/useForm";
+import { FormControl, Input, SubmitButton } from "./components";
+import { Types } from "./duck";
 
-export interface IFormProps<TFormFields> {
-  title: string;
-  submitBtn: string;
-  formFieldsProps: IFieldProps<TFormFields>[];
-  errors: DeepMap<DeepPartial<TFormFields>, FieldError>;
-  loading: boolean;
-  register: UseFormRegister<TFormFields>;
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
-}
-
-const Form = <TFormFields,>({
-  title,
-  submitBtn,
-  formFieldsProps,
-  errors,
-  loading,
+const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
+  children,
   onSubmit,
-  register,
-}: IFormProps<TFormFields>): JSX.Element => {
+  formConfig,
+  validationSchema,
+}) => {
+  const methods = useForm({
+    ...formConfig,
+    schema: validationSchema,
+  });
+
   return (
-    <form onSubmit={onSubmit}>
-      <Box textAlign="center" mb="7">
-        <Heading fontSize="3xl" fontWeight="normal">
-          {title}
-        </Heading>
-      </Box>
-
-      {formFieldsProps.map((fieldProps) => (
-        <FormField
-          key={fieldProps.id}
-          {...fieldProps}
-          register={register}
-          errors={errors}
-        />
-      ))}
-
-      <Button
-        colorScheme="teal"
-        variant="solid"
-        width="full"
-        mt={4}
-        type="submit"
-        disabled={loading}
-      >
-        {submitBtn}
-      </Button>
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+    </FormProvider>
   );
 };
+
+Form.Input = Input;
+Form.SubmitButton = SubmitButton;
+Form.FormControl = FormControl;
 
 export default Form;

@@ -1,1 +1,4 @@
-export * from "./operations.generated";
+export interface LoginFormFields {
+  email: string;
+  password: string;
+}

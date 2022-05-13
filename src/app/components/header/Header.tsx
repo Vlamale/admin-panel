@@ -1,14 +1,12 @@
 import * as React from "react";
 import { Button, Flex, Heading, Link, Stack } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import { useAppContext } from "app/hooks";
 
 const Header: React.FC = () => {
   const { signOut } = useAppContext();
-  const navigate = useNavigate();
 
   const signOutHandler = () => {
-    signOut(() => navigate("login"));
+    signOut();
   };
 
   return (
