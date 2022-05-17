@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box, Center, FormLabel, Heading } from "@chakra-ui/react";
 import { UseFormProps } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { Form } from "app/components";
 import { useAppContext } from "app/hooks";
@@ -13,9 +14,11 @@ const loginFormSchema: yup.SchemaOf<Types.LoginFormFields> = yup.object({
 
 const LoginPage: React.FC = () => {
   const { signIn } = useAppContext();
+  const navigate = useNavigate();
 
   const onSubmit = () => {
     signIn(Date.now().toString());
+    navigate("/");
   };
 
   const formConfig: UseFormProps = {
@@ -41,7 +44,7 @@ const LoginPage: React.FC = () => {
           </Form.FormControl>
           <Form.FormControl name="password" mb="4">
             <FormLabel>Password</FormLabel>
-            <Form.Input name="password" />
+            <Form.Input name="password" type="password" />
           </Form.FormControl>
 
           <Form.SubmitButton>Sign In</Form.SubmitButton>

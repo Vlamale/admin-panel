@@ -6,14 +6,16 @@ import {
   Link as ChakraLink,
   Stack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "app/hooks";
 
 const Header: React.FC = () => {
   const { signOut } = useAppContext();
+  const navigate = useNavigate();
 
   const signOutHandler = () => {
     signOut();
+    navigate("/login");
   };
 
   return (
