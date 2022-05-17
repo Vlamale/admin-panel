@@ -8,10 +8,13 @@ query getAlboms($options: PageQueryOptions) {
         name
       }
       photos {
-        meta {
-          totalCount
+        data {
+          id
         }
       }
+    }
+    meta {
+      totalCount
     }
   }
 }

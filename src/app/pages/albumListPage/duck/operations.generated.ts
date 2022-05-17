@@ -13,11 +13,12 @@ export type GetAlbomsQuery = {
           Pick<Types.Album, "id" | "title"> & {
             user?: Types.Maybe<Pick<Types.User, "id" | "name">>;
             photos?: Types.Maybe<{
-              meta?: Types.Maybe<Pick<Types.PageMetadata, "totalCount">>;
+              data?: Types.Maybe<Array<Types.Maybe<Pick<Types.Photo, "id">>>>;
             }>;
           }
         >
       >
     >;
+    meta?: Types.Maybe<Pick<Types.PageMetadata, "totalCount">>;
   }>;
 };

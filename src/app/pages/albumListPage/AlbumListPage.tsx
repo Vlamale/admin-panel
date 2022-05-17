@@ -1,40 +1,95 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import {
+  ChevronDownIcon,
+  DeleteIcon,
+  EditIcon,
+  ViewIcon,
+} from "@chakra-ui/icons";
+import {
+  Button,
   Center,
   Container,
   Heading,
-  Table,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
 } from "@chakra-ui/react";
+import { useSearchParams } from "react-router-dom";
+import { Table } from "app/components";
 import { useAppContext } from "app/hooks";
-import { operations, Types } from "./duck";
+import { operations, Types, Utils } from "./duck";
 
 const AlbumListPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+
   const { setIsLoading } = useAppContext();
-  const { data, loading } = useQuery<
+  const { data, loading, previousData } = useQuery<
     Types.GetAlbomsQuery,
     Types.GetAlbomsQueryVariables
   >(operations.getAlboms, {
+    notifyOnNetworkStatusChange: true,
     variables: {
       options: {
         paginate: {
-          page: 1,
-          limit: 10,
+          page: parseInt(searchParams.get("page") || "0") + 1,
+          limit: parseInt(searchParams.get("size") || "10"),
         },
       },
     },
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsLoading(loading);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "ID",
+        accessor: "id",
+      },
+      {
+        Header: "Title",
+        accessor: "title",
+      },
+      {
+        Header: "User name",
+        accessor: "userName",
+      },
+      {
+        Header: "Number of photos",
+        accessor: "totalCount",
+      },
+      {
+        Header: "action",
+        Cell: () => {
+          return (
+            <Menu>
+              <MenuButton as={Button} colorScheme="teal" variant="outline">
+                <ChevronDownIcon />
+              </MenuButton>
+              <MenuList minW="28">
+                <MenuItem justifyContent="space-between">
+                  Show <ViewIcon />
+                </MenuItem>
+                <MenuItem justifyContent="space-between">
+                  Edit <EditIcon />
+                </MenuItem>
+                <MenuItem justifyContent="space-between">
+                  Delete <DeleteIcon />
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          );
+        },
+      },
+    ],
+    []
+  );
 
   return (
     <Container maxW="container.md">
@@ -43,33 +98,17 @@ const AlbumListPage: React.FC = () => {
           Albom list
         </Heading>
 
-        <TableContainer maxW="100%" boxShadow="xl">
-          <Table variant="simple" size="md" maxW="100%" whiteSpace="normal">
-            <Thead bg="teal.500">
-              <Tr>
-                <Th isNumeric color="white">
-                  ID
-                </Th>
-                <Th color="white">Title</Th>
-                <Th color="white">User name</Th>
-                <Th isNumeric color="white">
-                  Number of photos
-                </Th>
-                <Th color="white">action</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {data?.albums?.data?.map((albom) => (
-                <Tr key={albom?.id}>
-                  <Td isNumeric>{albom?.id}</Td>
-                  <Td>{albom?.title}</Td>
-                  <Td>{albom?.user?.name}</Td>
-                  <Td isNumeric>7</Td>
-                  <Td>action</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
+        <TableContainer w="100%" boxShadow="xl">
+          <Table
+            data={Utils.getAlbumTableData(data || previousData)}
+            columns={columns}
+            pagination={{
+              totalCount:
+                data?.albums?.meta?.totalCount ||
+                previousData?.albums?.meta?.totalCount ||
+                1,
+            }}
+          />
         </TableContainer>
       </Center>
     </Container>

@@ -3,6 +3,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { Center, ChakraProvider, Spinner } from "@chakra-ui/react";
 import { AppRouter } from "./components";
 import { useAppContext } from "./hooks";
+import theme from "./theme";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API_URL || "https://graphqlzero.almansi.me/api",
@@ -14,11 +15,11 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <AppRouter />
 
         {isLoading && (
-          <Center pos="absolute" top="0" w="100vw" h="100vh">
+          <Center pos="fixed" top="0" w="100vw" h="100vh">
             <Spinner
               thickness="1px"
               speed="0.6s"
