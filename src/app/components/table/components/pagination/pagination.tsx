@@ -11,7 +11,6 @@ const Pagination = <Data extends Record<string, unknown>>({
   const {
     canPreviousPage,
     canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
     nextPage,
@@ -95,7 +94,7 @@ const Pagination = <Data extends Record<string, unknown>>({
       <span>
         Page{" "}
         <strong>
-          {pageIndex + 1} of {pageOptions.length}
+          {pageIndex + 1} of {pageCount}
         </strong>
       </span>
       <Select w="fit-content" value={pageSize} onChange={onChangePageSize}>
