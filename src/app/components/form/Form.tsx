@@ -1,6 +1,6 @@
 import * as React from "react";
-import { FormProvider } from "react-hook-form";
-import useForm from "app/hooks/useForm";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
 import { FormControl, Input, Select } from "./components";
 import { Types } from "./duck";
 
@@ -12,8 +12,8 @@ const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
 }) => {
   const methods = useForm({
     mode: "onBlur",
+    resolver: validationSchema && yupResolver(validationSchema),
     ...formConfig,
-    schema: validationSchema,
   });
 
   return (
