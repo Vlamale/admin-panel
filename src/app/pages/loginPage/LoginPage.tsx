@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, Center, FormLabel, Heading } from "@chakra-ui/react";
-import { UseFormProps } from "react-hook-form";
+import { Box, Button, Center, FormLabel, Heading } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { Form } from "app/components";
@@ -21,10 +20,6 @@ const LoginPage: React.FC = () => {
     navigate("/");
   };
 
-  const formConfig: UseFormProps = {
-    mode: "onBlur",
-  };
-
   return (
     <Center h="100vh">
       <Box boxShadow="xl" p="10" w="18em">
@@ -33,11 +28,7 @@ const LoginPage: React.FC = () => {
             Login
           </Heading>
         </Box>
-        <Form
-          onSubmit={onSubmit}
-          formConfig={formConfig}
-          validationSchema={loginFormSchema}
-        >
+        <Form onSubmit={onSubmit} validationSchema={loginFormSchema}>
           <Form.FormControl name="email" mb="6">
             <FormLabel>Email</FormLabel>
             <Form.Input name="email" />
@@ -47,7 +38,15 @@ const LoginPage: React.FC = () => {
             <Form.Input name="password" type="password" />
           </Form.FormControl>
 
-          <Form.SubmitButton>Sign In</Form.SubmitButton>
+          <Button
+            type="submit"
+            colorScheme="teal"
+            variant="solid"
+            width="full"
+            mt={4}
+          >
+            Sign In
+          </Button>
         </Form>
       </Box>
     </Center>

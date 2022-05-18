@@ -7,6 +7,7 @@ import {
   ViewIcon,
 } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
   Center,
   Container,
@@ -17,7 +18,7 @@ import {
   MenuList,
   TableContainer,
 } from "@chakra-ui/react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { Table } from "app/components";
 import { useAppContext } from "app/hooks";
 import { operations, Types, Utils } from "./duck";
@@ -43,8 +44,7 @@ const AlbumListPage: React.FC = () => {
 
   React.useEffect(() => {
     setIsLoading(loading);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [loading, setIsLoading]);
 
   const columns = React.useMemo(
     () => [
@@ -94,9 +94,25 @@ const AlbumListPage: React.FC = () => {
   return (
     <Container maxW="container.md">
       <Center flexDirection="column">
-        <Heading as="h1" my="12">
-          Albom list
-        </Heading>
+        <Box
+          d="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          w="100%"
+        >
+          <Heading as="h1" my="12" ml="24">
+            Albom list
+          </Heading>
+
+          <Button
+            as={Link}
+            to="/albums/create"
+            colorScheme="teal"
+            variant="solid"
+          >
+            Create album
+          </Button>
+        </Box>
 
         <TableContainer w="100%" boxShadow="xl">
           <Table

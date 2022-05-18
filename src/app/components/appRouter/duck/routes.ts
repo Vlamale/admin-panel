@@ -1,4 +1,9 @@
-import { AdminPage, LoginPage, AlbumListPage } from "../../../pages";
+import {
+  AdminPage,
+  LoginPage,
+  AlbumListPage,
+  CreateAlbumPage,
+} from "../../../pages";
 import { IRoute } from "./types";
 
 export const publicRoutes: IRoute[] = [
@@ -16,5 +21,9 @@ export const authRoutes: IRoute[] = [
   {
     path: "/albums",
     Component: AlbumListPage,
+  },
+  {
+    path: "/albums/create",
+    Component: CreateAlbumPage,
   },
 ];

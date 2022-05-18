@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormProvider } from "react-hook-form";
 import useForm from "app/hooks/useForm";
-import { FormControl, Input, SubmitButton } from "./components";
+import { FormControl, Input, Select } from "./components";
 import { Types } from "./duck";
 
 const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
@@ -11,6 +11,7 @@ const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
   validationSchema,
 }) => {
   const methods = useForm({
+    mode: "onBlur",
     ...formConfig,
     schema: validationSchema,
   });
@@ -23,7 +24,7 @@ const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
 };
 
 Form.Input = Input;
-Form.SubmitButton = SubmitButton;
 Form.FormControl = FormControl;
+Form.Select = Select;
 
 export default Form;

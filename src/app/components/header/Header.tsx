@@ -20,6 +20,8 @@ const Header: React.FC = () => {
 
   return (
     <Flex
+      pos="relative"
+      zIndex="1000"
       direction="row"
       justify="space-between"
       borderBottom="1px"
