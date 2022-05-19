@@ -31,7 +31,6 @@ const AlbumListPage: React.FC = () => {
     Types.GetAlbomsQuery,
     Types.GetAlbomsQueryVariables
   >(operations.getAlboms, {
-    notifyOnNetworkStatusChange: true,
     variables: {
       options: {
         paginate: {
@@ -42,54 +41,14 @@ const AlbumListPage: React.FC = () => {
     },
   });
 
+  const totalCount =
+    data?.albums?.meta?.totalCount ||
+    previousData?.albums?.meta?.totalCount ||
+    0;
+
   React.useEffect(() => {
     setIsLoading(loading);
   }, [loading, setIsLoading]);
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "ID",
-        accessor: "id",
-      },
-      {
-        Header: "Title",
-        accessor: "title",
-      },
-      {
-        Header: "User name",
-        accessor: "userName",
-      },
-      {
-        Header: "Number of photos",
-        accessor: "totalCount",
-      },
-      {
-        Header: "action",
-        Cell: () => {
-          return (
-            <Menu>
-              <MenuButton as={Button} colorScheme="teal" variant="outline">
-                <ChevronDownIcon />
-              </MenuButton>
-              <MenuList minW="28">
-                <MenuItem justifyContent="space-between">
-                  Show <ViewIcon />
-                </MenuItem>
-                <MenuItem justifyContent="space-between">
-                  Edit <EditIcon />
-                </MenuItem>
-                <MenuItem justifyContent="space-between">
-                  Delete <DeleteIcon />
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          );
-        },
-      },
-    ],
-    []
-  );
 
   return (
     <Container maxW="container.md">
@@ -116,15 +75,34 @@ const AlbumListPage: React.FC = () => {
 
         <TableContainer w="100%" boxShadow="xl">
           <Table
-            data={Utils.getAlbumTableData(data || previousData)}
-            columns={columns}
+            data={Utils.getAlbumTableData(data)}
             pagination={{
-              totalCount:
-                data?.albums?.meta?.totalCount ||
-                previousData?.albums?.meta?.totalCount ||
-                1,
+              totalCount,
             }}
-          />
+          >
+            <Table.Column name="ID" path="id" />
+            <Table.Column name="Title" path="title" />
+            <Table.Column name="User name" path="userName" />
+            <Table.Column name="Number of photos" path="totalCount" />
+            <Table.Column>
+              <Menu>
+                <MenuButton as={Button} colorScheme="teal" variant="outline">
+                  <ChevronDownIcon />
+                </MenuButton>
+                <MenuList minW="28">
+                  <MenuItem justifyContent="space-between">
+                    Show <ViewIcon />
+                  </MenuItem>
+                  <MenuItem justifyContent="space-between">
+                    Edit <EditIcon />
+                  </MenuItem>
+                  <MenuItem justifyContent="space-between">
+                    Delete <DeleteIcon />
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Table.Column>
+          </Table>
         </TableContainer>
       </Center>
     </Container>

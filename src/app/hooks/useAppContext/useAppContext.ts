@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContext } from "app/context/appProvider";
+import { AppContext } from "app/context/appProvider/duck";
 
 const useAppContext = () => React.useContext(AppContext);
 

@@ -1,9 +1,11 @@
-import { Column, TableOptions } from "react-table";
+import { IColumnProps } from "../components/column/duck/types";
 
-export interface ITableProps<Data extends Record<string, unknown>>
-  extends TableOptions<Data> {
-  columns: ReadonlyArray<Column<Data>>;
-  data: Data[];
+export interface INamespaceComponents {
+  Column: React.FC<IColumnProps>;
+}
+
+export interface ITableProps {
+  data: any[];
   pagination?: {
     totalCount: number;
   };
