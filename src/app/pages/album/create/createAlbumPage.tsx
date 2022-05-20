@@ -10,15 +10,9 @@ import {
 } from "@chakra-ui/react";
 import { SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { Form } from "app/components";
 import { useAppContext } from "app/hooks";
-import { operations, Types } from "./duck";
-
-const createAlbumFormSchema = yup.object({
-  title: yup.string().required().min(3).max(64),
-  userId: yup.string().required(),
-});
+import { Consts, operations, Types } from "./duck";
 
 const CreateAlbumPage: React.FC = () => {
   const { isLoading, setIsLoading } = useAppContext();
@@ -47,7 +41,7 @@ const CreateAlbumPage: React.FC = () => {
         input: formData,
       },
     });
-    navigate(-1);
+    navigate("/albums");
   };
 
   return (
@@ -59,7 +53,10 @@ const CreateAlbumPage: React.FC = () => {
               Create album
             </Heading>
           </Box>
-          <Form onSubmit={onSubmit} validationSchema={createAlbumFormSchema}>
+          <Form
+            onSubmit={onSubmit}
+            validationSchema={Consts.createAlbumFormSchema}
+          >
             <Form.FormControl name="title" mb="5">
               <FormLabel>Title</FormLabel>
               <Form.Input name="title" />

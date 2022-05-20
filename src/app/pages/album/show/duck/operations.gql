@@ -1,0 +1,22 @@
+query getAlbum($id: ID!, $options: PageQueryOptions) {
+  album(id: $id) {
+    id
+    title
+    user {
+      id
+      email
+      name
+    }
+    photos(options: $options) {
+      data {
+        id
+        title
+        thumbnailUrl
+        url
+      }
+      meta {
+        totalCount
+      }
+    }
+  }
+}

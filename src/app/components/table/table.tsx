@@ -26,7 +26,11 @@ const Table: React.FC<Types.ITableProps> & Types.INamespaceComponents = ({
                 return null;
               }
 
-              return <Th color="white">{ch.props.name}</Th>;
+              return (
+                <Th color="white" h="14">
+                  {ch.props.name}
+                </Th>
+              );
             })}
           </Tr>
         </Thead>
@@ -39,11 +43,17 @@ const Table: React.FC<Types.ITableProps> & Types.INamespaceComponents = ({
                   return null;
                 }
 
-                return (
-                  <Td>
-                    {ch.props.children ? ch.props.children : row[ch.props.path]}
-                  </Td>
-                );
+                if (ch.props.children) {
+                  return (
+                    <Td>
+                      {React.cloneElement(ch.props.children, {
+                        data: row,
+                      })}
+                    </Td>
+                  );
+                }
+
+                return <Td>{row[ch.props.path]}</Td>;
               })}
             </Tr>
           ))}

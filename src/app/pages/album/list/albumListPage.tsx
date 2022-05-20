@@ -1,25 +1,15 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import {
-  ChevronDownIcon,
-  DeleteIcon,
-  EditIcon,
-  ViewIcon,
-} from "@chakra-ui/icons";
-import {
   Box,
   Button,
   Center,
   Container,
   Heading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   TableContainer,
 } from "@chakra-ui/react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Table } from "app/components";
+import { AlbumDropdownButton, Table } from "app/components";
 import { useAppContext } from "app/hooks";
 import { operations, Types, Utils } from "./duck";
 
@@ -59,23 +49,18 @@ const AlbumListPage: React.FC = () => {
           justifyContent="space-between"
           w="100%"
         >
-          <Heading as="h1" my="12" ml="24">
+          <Heading as="h1" my="12" ml={[2, 12, 24]}>
             Albom list
           </Heading>
 
-          <Button
-            as={Link}
-            to="/albums/create"
-            colorScheme="teal"
-            variant="solid"
-          >
+          <Button as={Link} to="./create" colorScheme="teal" variant="solid">
             Create album
           </Button>
         </Box>
 
         <TableContainer w="100%" boxShadow="xl">
           <Table
-            data={Utils.getAlbumTableData(data)}
+            data={Utils.getAlbumsTableData(data || previousData)}
             pagination={{
               totalCount,
             }}
@@ -85,22 +70,7 @@ const AlbumListPage: React.FC = () => {
             <Table.Column name="User name" path="userName" />
             <Table.Column name="Number of photos" path="totalCount" />
             <Table.Column>
-              <Menu>
-                <MenuButton as={Button} colorScheme="teal" variant="outline">
-                  <ChevronDownIcon />
-                </MenuButton>
-                <MenuList minW="28">
-                  <MenuItem justifyContent="space-between">
-                    Show <ViewIcon />
-                  </MenuItem>
-                  <MenuItem justifyContent="space-between">
-                    Edit <EditIcon />
-                  </MenuItem>
-                  <MenuItem justifyContent="space-between">
-                    Delete <DeleteIcon />
-                  </MenuItem>
-                </MenuList>
-              </Menu>
+              <AlbumDropdownButton />
             </Table.Column>
           </Table>
         </TableContainer>

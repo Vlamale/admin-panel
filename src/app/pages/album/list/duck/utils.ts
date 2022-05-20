@@ -1,9 +1,8 @@
-export const getAlbumTableData = (data: any) => {
+export const getAlbumsTableData = (data: any) => {
   if (!data) {
     return [];
   }
   return data?.albums?.data.map((item: any) => ({
-    key: item?.key,
     id: item?.id,
     title: item?.title,
     userName: item?.user?.name,
