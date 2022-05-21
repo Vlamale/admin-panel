@@ -36,12 +36,14 @@ const CreateAlbumPage: React.FC = () => {
   const onSubmit: SubmitHandler<Types.ICreateAlbomFormFields> = async (
     formData
   ) => {
-    await createAlbum({
-      variables: {
-        input: formData,
-      },
-    });
-    navigate("/albums");
+    try {
+      await createAlbum({
+        variables: {
+          input: formData,
+        },
+      });
+      navigate("/albums");
+    } catch {}
   };
 
   return (

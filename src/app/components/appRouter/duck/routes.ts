@@ -5,6 +5,7 @@ import {
   CreateAlbumPage,
   ShowAlbumPage,
   ShowPhotoPage,
+  EditAlbumPage,
 } from "../../../pages";
 import { IRoute } from "./types";
 
@@ -35,5 +36,9 @@ export const authRoutes: IRoute[] = [
   {
     path: "/albums/:id/photos/:id",
     Component: ShowPhotoPage,
+  },
+  {
+    path: "/albums/:id/edit",
+    Component: EditAlbumPage,
   },
 ];

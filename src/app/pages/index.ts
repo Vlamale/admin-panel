@@ -5,4 +5,5 @@ export {
   CreateAlbumPage,
   ShowAlbumPage,
   ShowPhotoPage,
+  EditAlbumPage,
 } from "./album";
