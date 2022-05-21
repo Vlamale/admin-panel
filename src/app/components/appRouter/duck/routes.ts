@@ -4,6 +4,7 @@ import {
   AlbumListPage,
   CreateAlbumPage,
   ShowAlbumPage,
+  ShowPhotoPage,
 } from "../../../pages";
 import { IRoute } from "./types";
 
@@ -30,5 +31,9 @@ export const authRoutes: IRoute[] = [
   {
     path: "/albums/:id",
     Component: ShowAlbumPage,
+  },
+  {
+    path: "/albums/:id/photos/:id",
+    Component: ShowPhotoPage,
   },
 ];

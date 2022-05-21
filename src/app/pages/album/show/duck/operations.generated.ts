@@ -9,7 +9,7 @@ export type GetAlbumQueryVariables = Types.Exact<{
 export type GetAlbumQuery = {
   album?: Types.Maybe<
     Pick<Types.Album, "id" | "title"> & {
-      user?: Types.Maybe<Pick<Types.User, "id" | "email" | "name">>;
+      user?: Types.Maybe<Pick<Types.User, "id" | "name">>;
       photos?: Types.Maybe<{
         data?: Types.Maybe<
           Array<

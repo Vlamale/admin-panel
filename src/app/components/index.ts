@@ -3,5 +3,4 @@ export { default as Header } from "./header";
 export { default as AppRouter } from "./appRouter";
 export { default as Table } from "./table";
 export { default as Loader } from "./loader";
-export { default as AlbumDropdownButton } from "./albumDropdownButton";
-export { AlbumPhoto } from "./album";
+export { AlbumPhoto, ShowPhotoButton, AlbumDropdownButton } from "./album";

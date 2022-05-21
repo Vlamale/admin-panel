@@ -1,9 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as React from "react";
 import { useQuery } from "@apollo/client";
-import { ViewIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Button,
   Container,
   Heading,
   ListItem,
@@ -16,7 +14,7 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import { useSearchParams, useParams } from "react-router-dom";
-import { AlbumPhoto, Table } from "app/components";
+import { AlbumPhoto, ShowPhotoButton, Table } from "app/components";
 import { useAppContext } from "app/hooks";
 import { operations, Types } from "./duck";
 
@@ -24,12 +22,12 @@ const ShowAlbumPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const { setIsLoading } = useAppContext();
   const { id } = useParams();
+
   const { data, loading, previousData } = useQuery<
     Types.GetAlbumQuery,
     Types.GetAlbumQueryVariables
   >(operations.getAlbum, {
     variables: {
-      /* eslint-disable @typescript-eslint/no-non-null-assertion */
       id: id!,
       options: {
         paginate: {
@@ -54,17 +52,16 @@ const ShowAlbumPage: React.FC = () => {
 
   return (
     <Container maxW="container.md">
-      <Box d="flex" alignItems="center" justifyContent="space-between" w="100%">
-        <Heading as="h1" my="12" ml={[2, 12, 24]}>
-          Album: {data?.album?.title}
-        </Heading>
-      </Box>
+      <Heading as="h1" my="12" textAlign="center">
+        Album: {data?.album?.title}
+      </Heading>
 
       <Tabs isFitted variant="enclosed" boxShadow="xl">
         <TabList>
           <Tab>Basic</Tab>
           <Tab>Photos</Tab>
         </TabList>
+
         <TabPanels borderRightWidth="1px" borderLeftWidth="1px">
           <TabPanel>
             <UnorderedList styleType="none" spacing="6" p="6">
@@ -74,11 +71,9 @@ const ShowAlbumPage: React.FC = () => {
               <ListItem>
                 <b>User:</b> Name {data?.album?.user?.name}
               </ListItem>
-              <ListItem>
-                <b>Email:</b> Name {data?.album?.user?.email}
-              </ListItem>
             </UnorderedList>
           </TabPanel>
+
           <TabPanel>
             <TableContainer w="100%">
               <Table
@@ -93,15 +88,7 @@ const ShowAlbumPage: React.FC = () => {
                   <AlbumPhoto />
                 </Table.Column>
                 <Table.Column name="Actions">
-                  <>
-                    <Button
-                      colorScheme="teal"
-                      variant="outline"
-                      justifyContent="space-between"
-                    >
-                      <ViewIcon />
-                    </Button>
-                  </>
+                  <ShowPhotoButton />
                 </Table.Column>
               </Table>
             </TableContainer>

@@ -4,7 +4,6 @@ query getAlbum($id: ID!, $options: PageQueryOptions) {
     title
     user {
       id
-      email
       name
     }
     photos(options: $options) {
