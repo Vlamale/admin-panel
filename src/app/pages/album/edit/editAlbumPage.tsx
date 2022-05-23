@@ -13,7 +13,10 @@ import { SubmitHandler } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form } from "app/components";
 import { useAppContext } from "app/hooks";
-import { Types as CreateAlbumTypes } from "../create/duck";
+import {
+  Types as CreateAlbumTypes,
+  operations as createAlbumOperations,
+} from "../create/duck";
 import { Consts, operations, Types } from "./duck";
 
 const EditAlbumPage: React.FC = () => {
@@ -24,7 +27,7 @@ const EditAlbumPage: React.FC = () => {
   const { data: usersQuery, loading: usersQueryLoading } = useQuery<
     CreateAlbumTypes.GetUsersQuery,
     CreateAlbumTypes.GetUsersQueryVariables
-  >(operations.getUsers);
+  >(createAlbumOperations.getUsers);
 
   const { data: albumQuery, loading: albumQueryLoading } = useQuery<
     Types.GetAlbumInputQuery,

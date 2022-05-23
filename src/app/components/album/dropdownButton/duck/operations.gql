@@ -1,0 +1,3 @@
+mutation deleteAlbum {
+  deleteAlbum(id: 5)
+}
