@@ -7,3 +7,4 @@ export {
   ShowPhotoPage,
   EditAlbumPage,
 } from "./album";
+export { default as NotFoundPage } from "./notFoundPage";

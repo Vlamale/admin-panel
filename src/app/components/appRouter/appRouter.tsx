@@ -1,12 +1,9 @@
 import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useAppContext } from "app/hooks";
+import { NotFoundPage } from "app/pages";
 import { AuthRouter, PublicRouter } from "./components";
 import { RoutesConfig } from "./duck";
-
-const NotFound = () => {
-  return <>404</>;
-};
 
 const AppRouter: React.FC = () => {
   const { isAuthorized } = useAppContext();
@@ -19,7 +16,7 @@ const AppRouter: React.FC = () => {
             <Route key={path} path={path} element={<Component />} />
           )
         )}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
