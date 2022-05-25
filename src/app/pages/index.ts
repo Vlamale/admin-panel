@@ -8,3 +8,4 @@ export {
   EditAlbumPage,
 } from "./album";
 export { default as NotFoundPage } from "./notFoundPage";
+export { default as DateRangePage } from "./dateRange";

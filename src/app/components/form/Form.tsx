@@ -1,7 +1,13 @@
 import * as React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
-import { FormControl, Input, Select } from "./components";
+import {
+  DateInput,
+  DateRangeInput,
+  FormControl,
+  Input,
+  Select,
+} from "./components";
 import { Types } from "./duck";
 
 const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
@@ -18,12 +24,16 @@ const Form: React.FC<Types.IFormProps> & Types.INamespaceComponents = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+      <form onSubmit={onSubmit && methods.handleSubmit(onSubmit)}>
+        {children}
+      </form>
     </FormProvider>
   );
 };
 
 Form.Input = Input;
+Form.DateInput = DateInput;
+Form.DateRangeInput = DateRangeInput;
 Form.FormControl = FormControl;
 Form.Select = Select;
 

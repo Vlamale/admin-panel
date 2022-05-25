@@ -61,7 +61,7 @@ const CreateAlbumPage: React.FC = () => {
           >
             <Form.FormControl name="title" mb="5">
               <FormLabel>Title</FormLabel>
-              <Form.Input name="title" />
+              <Form.Input focus name="title" />
             </Form.FormControl>
 
             <Form.FormControl name="userId" mb="8">

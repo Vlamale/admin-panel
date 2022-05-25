@@ -6,6 +6,7 @@ import {
   ShowAlbumPage,
   ShowPhotoPage,
   EditAlbumPage,
+  DateRangePage,
 } from "../../../pages";
 import { IRoute } from "./types";
 
@@ -40,5 +41,9 @@ export const authRoutes: IRoute[] = [
   {
     path: "/albums/:id/edit",
     Component: EditAlbumPage,
+  },
+  {
+    path: "/date-range",
+    Component: DateRangePage,
   },
 ];

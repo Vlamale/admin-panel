@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
         <Form onSubmit={onSubmit} validationSchema={loginFormSchema}>
           <Form.FormControl name="email" mb="6">
             <FormLabel>Email</FormLabel>
-            <Form.Input name="email" />
+            <Form.Input focus name="email" />
           </Form.FormControl>
           <Form.FormControl name="password" mb="4">
             <FormLabel>Password</FormLabel>

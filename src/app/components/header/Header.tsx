@@ -42,16 +42,16 @@ const Header: React.FC = () => {
               color: "teal.500",
             }}
           >
-            albums
+            Albums
           </ChakraLink>
           <ChakraLink
             as={Link}
-            to="/"
+            to="/date-range"
             _hover={{
               color: "teal.500",
             }}
           >
-            Menu Item 2
+            Date range
           </ChakraLink>
           <ChakraLink
             as={Link}

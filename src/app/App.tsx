@@ -6,7 +6,7 @@ import { useAppContext } from "./hooks";
 import theme from "./theme";
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_API_URL || "https://graphqlzero.almansi.me/api",
+  uri: process.env.REACT_APP_API_URL,
   cache: new InMemoryCache(),
 });
 
