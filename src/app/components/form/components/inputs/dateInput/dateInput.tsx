@@ -10,6 +10,7 @@ import { get } from "lodash";
 import DatePicker from "react-datepicker";
 import { useController, useFormContext } from "react-hook-form";
 import { Types } from "./duck";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DateInput: React.FC<Types.IDateInputProps> = ({
   name,
