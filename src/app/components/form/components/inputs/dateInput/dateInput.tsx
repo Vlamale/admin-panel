@@ -33,6 +33,7 @@ const DateInput: React.FC<Types.IDateInputProps> = ({
   return (
     <FormControl isInvalid={isError}>
       <FormLabel>{label}</FormLabel>
+
       {/* @ts-ignore */}
       <Input
         as={DatePicker}
