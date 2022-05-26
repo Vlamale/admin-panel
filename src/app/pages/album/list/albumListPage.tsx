@@ -10,8 +10,9 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import { useSearchParams, Link } from "react-router-dom";
-import { AlbumDropdownButton, Table } from "app/components";
+import { Table } from "app/components";
 import { useAppContext } from "app/hooks";
+import { DropdownButton } from "./components";
 import { operations, Types, Utils } from "./duck";
 
 const AlbumListPage: React.FC = () => {
@@ -69,7 +70,7 @@ const AlbumListPage: React.FC = () => {
             <Table.Column name="User name" path="userName" />
             <Table.Column name="Number of photos" path="totalCount" />
             <Table.Column>
-              <AlbumDropdownButton />
+              <DropdownButton />
             </Table.Column>
           </Table>
         </TableContainer>

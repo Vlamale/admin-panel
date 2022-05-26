@@ -15,8 +15,9 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import { useSearchParams, useParams } from "react-router-dom";
-import { AlbumPhoto, ShowPhotoButton, Table } from "app/components";
+import { Table } from "app/components";
 import { useAppContext } from "app/hooks";
+import { Photo, ShowPhotoButton } from "./components";
 import { operations, Types } from "./duck";
 
 const ShowAlbumPage: React.FC = () => {
@@ -81,7 +82,7 @@ const ShowAlbumPage: React.FC = () => {
                 <Table.Column name="ID" path="id" />
                 <Table.Column name="Title" path="title" />
                 <Table.Column name="Preview">
-                  <AlbumPhoto />
+                  <Photo />
                 </Table.Column>
                 <Table.Column name="Actions">
                   <ShowPhotoButton />

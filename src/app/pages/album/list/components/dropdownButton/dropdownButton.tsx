@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "app/hooks";
 import { operations, Types } from "./duck";
 
-const AlbumDropdownButton: React.FC = ({ data }: any) => {
+const DropdownButton: React.FC = ({ data }: any) => {
   const { setIsLoading } = useAppContext();
   const [deleteAlbum, { loading }] = useMutation<
     Types.DeleteAlbumMutation,
@@ -106,4 +106,4 @@ const AlbumDropdownButton: React.FC = ({ data }: any) => {
   );
 };
 
-export default AlbumDropdownButton;
+export default DropdownButton;
