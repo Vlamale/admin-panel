@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "app/hooks";
+import { operations as albumListOperations } from "../../duck";
 import { operations, Types } from "./duck";
 
 const DropdownButton: React.FC = ({ data }: any) => {
@@ -31,7 +32,13 @@ const DropdownButton: React.FC = ({ data }: any) => {
   const [deleteAlbum, { loading }] = useMutation<
     Types.DeleteAlbumMutation,
     Types.DeleteAlbumMutationVariables
-  >(operations.deleteAlbum);
+  >(operations.deleteAlbum, {
+    refetchQueries: [
+      {
+        query: albumListOperations.getAlboms,
+      },
+    ],
+  });
 
   React.useEffect(() => {
     setIsLoading(loading);
