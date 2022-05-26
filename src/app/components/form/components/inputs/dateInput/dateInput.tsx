@@ -30,17 +30,17 @@ const DateInput: React.FC<Types.IDateInputProps> = ({
 
   return (
     <FormControl isInvalid={isError}>
-      <FormLabel>{label}</FormLabel>
+      {label && <FormLabel>{label}</FormLabel>}
 
       {/* @ts-ignore */}
       <Input
-        as={DatePicker}
-        dateFormat="MM-dd-yyyy"
         ref={ref}
         name={name}
+        as={DatePicker}
+        dateFormat="MM-dd-yyyy"
         value={value}
-        onBlur={onBlur}
         selected={value}
+        onBlur={onBlur}
         {...props}
         onChange={(date) =>
           date instanceof Date &&

@@ -13,8 +13,8 @@ const DateRangeInput: React.FC<Types.IDateRangeInputProps> = ({
   return (
     <>
       <FormLabel>{label}</FormLabel>
-      <DateInput {...props} name={`${name}.startDate`} label={startLabel} />
-      <DateInput {...props} name={`${name}.endDate`} label={endLabel} />
+      <DateInput name={`${name}.startDate`} label={startLabel} {...props} />
+      <DateInput name={`${name}.endDate`} label={endLabel} {...props} />
     </>
   );
 };

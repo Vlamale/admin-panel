@@ -57,8 +57,8 @@ const CreateAlbumPage: React.FC = () => {
             </Heading>
           </Box>
           <Form
-            onSubmit={onSubmit}
             validationSchema={Consts.createAlbumFormSchema}
+            onSubmit={onSubmit}
           >
             <Form.FormControl name="title" mb="5">
               <FormLabel>Title</FormLabel>
@@ -72,13 +72,6 @@ const CreateAlbumPage: React.FC = () => {
                 placeholder="Select the user"
                 options={Utils.getSelectOptions(usersQuery)}
               />
-              {/* <Form.Select name="userId" placeholder="Select the user">
-                {usersQuery?.users?.data?.map((user) => (
-                  <option key={user?.id} value={user?.id?.toString()}>
-                    {user?.name}
-                  </option>
-                ))}
-              </Form.Select> */}
             </Form.FormControl>
 
             <HStack>
@@ -91,10 +84,10 @@ const CreateAlbumPage: React.FC = () => {
                 Cancle
               </Button>
               <Button
-                disabled={isLoading}
                 type="submit"
                 colorScheme="teal"
                 variant="solid"
+                disabled={isLoading}
               >
                 Submit
               </Button>

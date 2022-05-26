@@ -65,15 +65,12 @@ const EditAlbumPage: React.FC = () => {
     } catch {}
   };
 
-  const formConfig = React.useMemo(
-    () => ({
-      defaultValues: {
-        title: albumQuery?.album?.title || "pp",
-        userId: albumQuery?.album?.user?.id,
-      },
-    }),
-    [albumQuery]
-  );
+  const formConfig = {
+    defaultValues: {
+      title: albumQuery?.album?.title || "",
+      userId: albumQuery?.album?.user?.id,
+    },
+  };
 
   return (
     <Box pos="absolute" w="100%" h="100vh" left="0" top="0">
@@ -115,10 +112,10 @@ const EditAlbumPage: React.FC = () => {
                   Cancel
                 </Button>
                 <Button
-                  disabled={isLoading}
                   type="submit"
                   colorScheme="teal"
                   variant="solid"
+                  disabled={isLoading}
                 >
                   Submit
                 </Button>

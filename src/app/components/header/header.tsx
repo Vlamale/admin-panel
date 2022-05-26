@@ -39,8 +39,8 @@ const Header: React.FC = () => {
         </ChakraLink>
       </Heading>
       <Stack
-        size="sm"
         d={["none", "none", "flex", "flex"]}
+        size="sm"
         direction="row"
         spacing="24px"
       >
@@ -59,19 +59,19 @@ const Header: React.FC = () => {
       </Stack>
 
       <IconButton
+        d={["flex", "flex", "none", "none"]}
         colorScheme="teal"
         variant="outline"
         aria-label="Open menu"
         size="lg"
         zIndex={30}
         icon={display === "none" ? <HamburgerIcon /> : <CloseIcon />}
-        d={["flex", "flex", "none", "none"]}
         onClick={() => changeDisplay(display === "none" ? "flex" : "none")}
       />
 
       <Flex
-        w="100vw"
         display={display}
+        w="100vw"
         bgColor="gray.50"
         zIndex={20}
         h="100vh"

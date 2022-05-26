@@ -33,9 +33,9 @@ const DateRangePage: React.FC = () => {
         >
           <Form.DateRangeInput
             name="dateRange"
-            minDate={new Date(Date.now() - 3600 * 1000 * 24 * 6)}
             startLabel="From:"
             endLabel="To:"
+            minDate={new Date(Date.now() - 3600 * 1000 * 24 * 6)}
           />
         </Form>
       </Box>

@@ -1,15 +1,9 @@
 import * as React from "react";
 import { Box, Button, Center, FormLabel, Heading } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { Form } from "app/components";
 import { useAppContext } from "app/hooks";
-import { Types } from "./duck";
-
-const loginFormSchema: yup.SchemaOf<Types.LoginFormFields> = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
-});
+import { Consts } from "./duck";
 
 const LoginPage: React.FC = () => {
   const { signIn } = useAppContext();
@@ -28,7 +22,7 @@ const LoginPage: React.FC = () => {
             Login
           </Heading>
         </Box>
-        <Form onSubmit={onSubmit} validationSchema={loginFormSchema}>
+        <Form validationSchema={Consts.loginFormSchema} onSubmit={onSubmit}>
           <Form.FormControl name="email" mb="6">
             <FormLabel>Email</FormLabel>
             <Form.Input focus name="email" />

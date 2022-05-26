@@ -62,8 +62,8 @@ const AlbumListPage: React.FC = () => {
 
         <TableContainer w="100%" boxShadow="xl">
           <Table
-            data={Utils.getAlbumsTableData(data || previousData)}
             totalCount={totalCount}
+            data={Utils.getAlbumsTableData(data || previousData)}
           >
             <Table.Column name="ID" path="id" />
             <Table.Column name="Title" path="title" />
