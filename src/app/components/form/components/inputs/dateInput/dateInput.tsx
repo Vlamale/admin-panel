@@ -19,7 +19,6 @@ const DateInput: React.FC<Types.IDateInputProps> = ({
 }) => {
   const {
     control,
-    watch,
     formState: { errors },
   } = useFormContext();
   const {
@@ -27,9 +26,7 @@ const DateInput: React.FC<Types.IDateInputProps> = ({
     fieldState: { error },
   } = useController({ name, control });
 
-  const dateReceived = watch(name);
-  const errorMessages = get(errors, name);
-  const isError = !!(errors && errorMessages);
+  const isError = !!get(errors, name);
 
   return (
     <FormControl isInvalid={isError}>
@@ -43,13 +40,14 @@ const DateInput: React.FC<Types.IDateInputProps> = ({
         name={name}
         value={value}
         onBlur={onBlur}
-        selected={dateReceived ? new Date(dateReceived) : null}
+        selected={value}
         {...props}
         onChange={(date) =>
           date instanceof Date &&
           onChange(new Date(new Date(date).setHours(0, 0, 0, 0)))
         }
       />
+
       {error?.message && (
         <FormErrorMessage pos="absolute" mt="1">
           {error?.message}

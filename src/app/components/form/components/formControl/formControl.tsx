@@ -12,8 +12,7 @@ const FormControl: React.FC<Types.IFormControlProps> = ({
   const {
     formState: { errors },
   } = useFormContext();
-  const errorMessages = get(errors, name);
-  const isError = !!(errors && errorMessages);
+  const isError = !!get(errors, name);
 
   return (
     <ChakraFormControl isInvalid={isError} {...props}>
