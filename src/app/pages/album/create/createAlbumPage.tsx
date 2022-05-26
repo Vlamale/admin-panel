@@ -13,7 +13,7 @@ import { SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Form } from "app/components";
 import { useAppContext } from "app/hooks";
-import { Consts, operations, Types } from "./duck";
+import { Consts, operations, Types, Utils } from "./duck";
 
 const CreateAlbumPage: React.FC = () => {
   const { isLoading, setIsLoading } = useAppContext();
@@ -67,13 +67,18 @@ const CreateAlbumPage: React.FC = () => {
 
             <Form.FormControl name="userId" mb="8">
               <FormLabel>User</FormLabel>
-              <Form.Select name="userId" placeholder="Select the user">
+              <Form.Select
+                name="userId"
+                placeholder="Select the user"
+                options={Utils.getSelectOptions(usersQuery)}
+              />
+              {/* <Form.Select name="userId" placeholder="Select the user">
                 {usersQuery?.users?.data?.map((user) => (
                   <option key={user?.id} value={user?.id?.toString()}>
                     {user?.name}
                   </option>
                 ))}
-              </Form.Select>
+              </Form.Select> */}
             </Form.FormControl>
 
             <HStack>

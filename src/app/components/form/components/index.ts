@@ -1,3 +1,2 @@
-export { Input, DateInput, DateRangeInput } from "./inputs";
+export { Input, DateInput, DateRangeInput, Select } from "./inputs";
 export { default as FormControl } from "./formControl";
-export { default as Select } from "./select";

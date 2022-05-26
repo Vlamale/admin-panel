@@ -17,6 +17,7 @@ import { useAppContext } from "app/hooks";
 import {
   Types as CreateAlbumTypes,
   operations as createAlbumOperations,
+  Utils,
 } from "../create/duck";
 import { Consts, operations, Types } from "./duck";
 
@@ -97,13 +98,11 @@ const EditAlbumPage: React.FC = () => {
 
               <Form.FormControl name="userId" mb="8">
                 <FormLabel>User</FormLabel>
-                <Form.Select name="userId" placeholder="Select the user">
-                  {usersQuery?.users?.data?.map((user) => (
-                    <option key={user?.id} value={user?.id?.toString()}>
-                      {user?.name}
-                    </option>
-                  ))}
-                </Form.Select>
+                <Form.Select
+                  name="userId"
+                  placeholder="Select the user"
+                  options={Utils.getSelectOptions(usersQuery)}
+                />
               </Form.FormControl>
 
               <HStack>
@@ -113,7 +112,7 @@ const EditAlbumPage: React.FC = () => {
                   colorScheme="teal"
                   variant="outline"
                 >
-                  Cancle
+                  Cancel
                 </Button>
                 <Button
                   disabled={isLoading}

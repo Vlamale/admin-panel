@@ -5,7 +5,7 @@ import { Types as FormControlTypes } from "../components/formControl/duck";
 import { Types as DateInputTypes } from "../components/inputs/dateInput/duck";
 import { Types as DateRangeInputTypes } from "../components/inputs/dateRangeInput/duck";
 import { Types as InputTypes } from "../components/inputs/input/duck";
-import { Types as SelectTypes } from "../components/select/duck";
+import { Types as SelectTypes } from "../components/inputs/select/duck";
 
 export interface IFormProps {
   onSubmit?: SubmitHandler<any>;
