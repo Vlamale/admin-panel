@@ -3,7 +3,7 @@ import { Button, HStack, Select } from "@chakra-ui/react";
 import { usePagination } from "app/hooks";
 import { Consts } from "./duck";
 
-const Pagination: React.FC = () => {
+const Pagination: React.FC<{ totalCount: number }> = ({ totalCount }) => {
   const {
     next,
     prev,
@@ -14,19 +14,16 @@ const Pagination: React.FC = () => {
     canPreviousPage,
     canNextPage,
     maxPage,
-  } = usePagination();
+  } = usePagination(totalCount);
 
-  const paginationHandlers = React.useMemo(
-    () => ({
-      firstPage: () => setPage(0),
-      prevPage: () => prev(),
-      nextPage: () => next(),
-      lastPage: () => setPage(maxPage - 1),
-      changeSize: (e: React.ChangeEvent<HTMLSelectElement>) =>
-        setSize(parseInt(e.target.value)),
-    }),
-    [maxPage, setPage, prev, next, setSize]
-  );
+  const paginationHandlers = {
+    firstPage: () => setPage(0),
+    prevPage: () => prev(),
+    nextPage: () => next(),
+    lastPage: () => setPage(maxPage - 1),
+    changeSize: (e: React.ChangeEvent<HTMLSelectElement>) =>
+      setSize(parseInt(e.target.value)),
+  };
 
   return (
     <HStack diraction="row" spacing="2" justifyContent="center" my="4">

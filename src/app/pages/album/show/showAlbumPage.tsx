@@ -76,12 +76,7 @@ const ShowAlbumPage: React.FC = () => {
 
           <TabPanel>
             <TableContainer w="100%">
-              <Table
-                data={tableData}
-                pagination={{
-                  totalCount,
-                }}
-              >
+              <Table data={tableData} totalCount={totalCount}>
                 <Table.Column name="ID" path="id" />
                 <Table.Column name="Title" path="title" />
                 <Table.Column name="Preview">

@@ -6,7 +6,5 @@ export interface INamespaceComponents {
 
 export interface ITableProps {
   data: any[];
-  pagination?: {
-    totalCount: number;
-  };
+  totalCount: number;
 }

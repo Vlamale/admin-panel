@@ -1,9 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import useTableContext from "../useTableContext";
 
-const usePagination = () => {
-  const { pagination } = useTableContext();
-  const totalCount = pagination?.totalCount || 0;
+const usePagination = (totalCount: number) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPageIndex = parseInt(searchParams.get("page") ?? "0");

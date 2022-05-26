@@ -7,17 +7,17 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { TableProvider } from "app/context";
+import { get } from "lodash";
 import { Column, Pagination } from "./components";
 import { Types } from "./duck";
 
 const Table: React.FC<Types.ITableProps> & Types.INamespaceComponents = ({
   children,
   data,
-  pagination,
+  totalCount,
 }) => {
   return (
-    <TableProvider data={data} pagination={pagination}>
+    <>
       <ChakraTable variant="simple" size="md" maxW="100%" whiteSpace="normal">
         <Thead bg="teal.500">
           <Tr>
@@ -53,15 +53,15 @@ const Table: React.FC<Types.ITableProps> & Types.INamespaceComponents = ({
                   );
                 }
 
-                return <Td>{row[ch.props.path]}</Td>;
+                return <Td>{get(row, ch.props.path)}</Td>;
               })}
             </Tr>
           ))}
         </Tbody>
       </ChakraTable>
 
-      {pagination && <Pagination />}
-    </TableProvider>
+      {totalCount !== undefined && <Pagination totalCount={totalCount} />}
+    </>
   );
 };
 

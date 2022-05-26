@@ -61,9 +61,7 @@ const AlbumListPage: React.FC = () => {
         <TableContainer w="100%" boxShadow="xl">
           <Table
             data={Utils.getAlbumsTableData(data || previousData)}
-            pagination={{
-              totalCount,
-            }}
+            totalCount={totalCount}
           >
             <Table.Column name="ID" path="id" />
             <Table.Column name="Title" path="title" />
