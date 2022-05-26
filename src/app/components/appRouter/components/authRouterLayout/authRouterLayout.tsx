@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import { Header } from "app/components";
 
-const AuthRouter: React.FC = () => {
+const AuthRouterLayout: React.FC = () => {
   return (
     <Box d="flex" flexDirection="column" minH="100vh">
       <Header />
@@ -12,4 +12,4 @@ const AuthRouter: React.FC = () => {
   );
 };
 
-export default AuthRouter;
+export default AuthRouterLayout;

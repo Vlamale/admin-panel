@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
 
-const PublicRouter: React.FC = () => {
+const PublicRouterLayout: React.FC = () => {
   return <Outlet />;
 };
 
-export default PublicRouter;
+export default PublicRouterLayout;

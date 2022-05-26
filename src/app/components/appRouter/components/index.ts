@@ -1,2 +1,2 @@
-export { default as AuthRouter } from "./authRouter";
-export { default as PublicRouter } from "./publicRouter";
+export { default as AuthRouterLayout } from "./authRouterLayout";
+export { default as PublicRouterLayout } from "./publicRouterLayout";

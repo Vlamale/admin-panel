@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useAppContext } from "app/hooks";
 import { NotFoundPage } from "app/pages";
-import { AuthRouter, PublicRouter } from "./components";
+import { AuthRouterLayout, PublicRouterLayout } from "./components";
 import { RoutesConfig } from "./duck";
 
 const AppRouter: React.FC = () => {
@@ -10,7 +10,9 @@ const AppRouter: React.FC = () => {
 
   return (
     <Routes>
-      <Route element={isAuthorized ? <AuthRouter /> : <PublicRouter />}>
+      <Route
+        element={isAuthorized ? <AuthRouterLayout /> : <PublicRouterLayout />}
+      >
         {RoutesConfig[isAuthorized ? "authRoutes" : "publicRoutes"].map(
           ({ path, Component }) => (
             <Route key={path} path={path} element={<Component />} />
