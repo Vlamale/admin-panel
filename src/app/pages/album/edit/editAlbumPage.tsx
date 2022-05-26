@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import {
@@ -47,7 +48,7 @@ const EditAlbumPage: React.FC = () => {
     const loading =
       usersQueryLoading || updateAlbumLoading || albumQueryLoading;
     setIsLoading(loading);
-  }, [usersQueryLoading, updateAlbumLoading, albumQueryLoading, setIsLoading]);
+  }, [usersQueryLoading, updateAlbumLoading, albumQueryLoading]);
 
   const onSubmit: SubmitHandler<Types.IUpdateAlbomFormFields> = async (
     formData

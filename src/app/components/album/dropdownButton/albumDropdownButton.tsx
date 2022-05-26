@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useMutation } from "@apollo/client";
 import {
@@ -34,7 +35,7 @@ const AlbumDropdownButton: React.FC = ({ data }: any) => {
 
   React.useEffect(() => {
     setIsLoading(loading);
-  }, [loading, setIsLoading]);
+  }, [loading]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

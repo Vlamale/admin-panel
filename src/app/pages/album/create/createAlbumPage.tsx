@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import {
@@ -31,7 +32,7 @@ const CreateAlbumPage: React.FC = () => {
   React.useEffect(() => {
     const loading = usersQueryLoading || albumMutationLoading;
     setIsLoading(loading);
-  }, [usersQueryLoading, albumMutationLoading, setIsLoading]);
+  }, [usersQueryLoading, albumMutationLoading]);
 
   const onSubmit: SubmitHandler<Types.ICreateAlbomFormFields> = async (
     formData

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 import {
@@ -40,7 +41,7 @@ const ShowAlbumPage: React.FC = () => {
 
   React.useEffect(() => {
     setIsLoading(loading);
-  }, [loading, setIsLoading]);
+  }, [loading]);
 
   const tableData =
     data?.album?.photos?.data || previousData?.album?.photos?.data || [];

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 import { Center, Container, Heading, Image } from "@chakra-ui/react";
@@ -21,7 +22,7 @@ const ShowPhotoPage: React.FC = () => {
 
   React.useEffect(() => {
     setIsLoading(loading);
-  }, [loading, setIsLoading]);
+  }, [loading]);
 
   return (
     <Container maxW="container.md">

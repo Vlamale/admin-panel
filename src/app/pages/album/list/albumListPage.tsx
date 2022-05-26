@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useQuery } from "@apollo/client";
 import {
@@ -38,7 +39,7 @@ const AlbumListPage: React.FC = () => {
 
   React.useEffect(() => {
     setIsLoading(loading);
-  }, [loading, setIsLoading]);
+  }, [loading]);
 
   return (
     <Container maxW="container.md">
