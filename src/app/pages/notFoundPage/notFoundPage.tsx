@@ -8,7 +8,7 @@ const NotFoundPage: React.FC = () => {
   const { isAuthorized } = useAppContext();
   return (
     <Box pos="absolute" w="100%" h="100vh" left="0" top="0">
-      <Center h="full">
+      <Center h="full" mx={[4, 4, 0]}>
         <VStack spacing="8">
           <Heading as="h1" fontSize="8xl">
             404
