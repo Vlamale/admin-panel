@@ -5,9 +5,11 @@ import { AppRouter, Loader } from "./components";
 import { useAppContext } from "./hooks";
 import theme from "./theme";
 
+const cache = new InMemoryCache();
+
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API_URL,
-  cache: new InMemoryCache(),
+  cache,
 });
 
 function App() {

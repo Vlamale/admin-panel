@@ -33,6 +33,9 @@ const DropdownButton: React.FC = ({ data }: any) => {
     Types.DeleteAlbumMutation,
     Types.DeleteAlbumMutationVariables
   >(operations.deleteAlbum, {
+    variables: {
+      id: data.id,
+    },
     refetchQueries: [
       {
         query: albumListOperations.getAlboms,

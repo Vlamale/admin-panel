@@ -2,7 +2,7 @@
 import * as Types from "../../../../../../../schema.generated";
 
 export type DeleteAlbumMutationVariables = Types.Exact<{
-  [key: string]: never;
+  id: Types.Scalars["ID"];
 }>;
 
 export type DeleteAlbumMutation = Pick<Types.Mutation, "deleteAlbum">;
